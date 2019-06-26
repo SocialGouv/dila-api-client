@@ -69,6 +69,11 @@ node-fetch@^2.6.0:
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
   integrity sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
 
+promise-serial-exec@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/promise-serial-exec/-/promise-serial-exec-1.0.0.tgz#59859899c6d7c711596b17c6305aeae19ec5715c"
+  integrity sha512-NBtKEnJFeq6UdjGdw79zollyffv0GYtrNQNsU1bKdxbJHm29byqbws2K3yYd5VZAuLjoIqX+xGgntTPINaOMQg==
+
 punycode@2.x.x:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"

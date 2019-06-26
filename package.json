@@ -1,6 +1,6 @@
 {
   "name": "dila-api-client",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "a client for the DILA API that publishes the french law",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,7 @@
   "dependencies": {
     "debug": "^4.1.1",
     "node-fetch": "^2.6.0",
+    "promise-serial-exec": "^1.0.0",
     "simple-oauth2": "^2.2.1"
   }
 }

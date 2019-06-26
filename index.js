@@ -1,6 +1,7 @@
 const fetch = require("node-fetch");
 const OAuth2 = require("simple-oauth2");
 const debug = require('debug')('dila-api-client')
+const serialExec = require("promise-serial-exec");
 
 const clientId = process.env.OAUTH_CLIENT_ID;
 const clientSecret = process.env.OAUTH_CLIENT_SECRET;
@@ -109,11 +110,22 @@ class DilaApiClient {
     };
   }
 
-  async fetchKaliConteneur(id) {
-    return this.apiFetch({
+  expandChildren(parentObject) {
+    return [
+      ...parentObject.sections.map(s => this.toSection(s)),
+      ...parentObject.articles.map(a => this.toArticle(a))
+    ]
+  }
+
+  async fetchKaliConteneur({ id, embedArticles }) {
+    const conteneur = this.apiFetch({
       path: "dila/legifrance/lf-engine-app/consult/kaliContIdcc",
       params: { id }
     });
+    if (embedArticles) {
+      return conteneur.then(conteneur => this.embedArticles(conteneur));
+    }
+    return conteneur;
   }
 
   async fetchKaliTexte(id) {
@@ -131,11 +143,53 @@ class DilaApiClient {
     });
   }
 
-  async fetchCodeTableMatieres(params) {
-    return this.apiFetch({
+  async fetchCodeTableMatieres({ params, embedArticles }) {
+    const tbl = this.apiFetch({
       path: "dila/legifrance/lf-engine-app/consult/code/tableMatieres",
       params
     });
+    if (embedArticles) {
+      return tbl.then(tbl => this.embedArticles(tbl))
+    }
+    return tbl;
+  }
+
+  async fetchObjectIfNecessary(dilaObject, level) {
+    if (
+      level > 1 &&
+      (!dilaObject.articles || dilaObject.articles.length == 0) &&
+      (!dilaObject.sections || dilaObject.sections.length == 0) &&
+      dilaObject.id.substr(0, 8) === "KALITEXT"
+    ) {
+      debug(`fetching sub-object ${dilaObject.id}`);
+      return await this.fetchKaliTexte(dilaObject.id);
+    }
+    return dilaObject;
+  }
+
+  // embed article details into the section
+  async embedArticles(dilaObjectOriginal, level = 0) {
+    const dilaObject = await this.fetchObjectIfNecessary(dilaObjectOriginal, level);
+    debug(`embedArticles dilaObject ${dilaObject.id}`);
+    return {
+      ...dilaObject,
+      articles:
+        (dilaObject.articles &&
+          (await Promise.all(
+            dilaObject.articles
+              .filter(article => article.etat.substr(0, 7) === "VIGUEUR")
+              .map(article => this.fetchArticle(article.id))
+          ))) ||
+        [],
+      sections:
+        (dilaObject.sections &&
+          (await serialExec(
+            dilaObject.sections
+              .filter(dilaObject => dilaObject.etat.substr(0, 7) === "VIGUEUR")
+              .map(dilaObject => () => this.embedArticles(dilaObject, level + 1))
+          ))) ||
+        []
+    };
   }
 }
 
