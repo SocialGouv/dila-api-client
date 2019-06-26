@@ -4,6 +4,10 @@ This JS package helps querying the DILA API
 
 ## Usage
 
+You need to set two envrionment variables : `OAUTH_CLIENT_ID` and `OAUTH_CLIENT_SECRET`.
+
+These variables are the "oauth identifier" defined in your custom application in the [AIFE portal](https://developer.aife.economie.gouv.fr)
+
 ## Récupérer la table des matières d'un code
 
 ```js
