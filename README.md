@@ -22,8 +22,8 @@ dilaApi.fetchCodeTableMatieres({
 }).then(console.log)
 
 ```
- 
-## Other API calls 
+
+## Other API calls
 
 ```js
 dilaApi.apiFetch({
@@ -34,3 +34,8 @@ dilaApi.apiFetch({
   }
 }).then(console.log)
 ```
+
+## Debug
+
+you need to set the `DEBUG=dila-api-client` environment variable in order to see
+the output of inner logs.

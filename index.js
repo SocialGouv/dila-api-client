@@ -1,5 +1,6 @@
 const fetch = require("node-fetch");
 const OAuth2 = require("simple-oauth2");
+const debug = require('debug')('dila-api-client')
 
 const clientId = process.env.OAUTH_CLIENT_ID;
 const clientSecret = process.env.OAUTH_CLIENT_SECRET;
@@ -40,12 +41,15 @@ class DilaApiClient {
       this.globalToken = accessToken.token.access_token;
       return accessToken.token.access_token;
     } catch (error) {
-      console.log("error", error);
-      console.log("Access Token error", error.message);
+      debug("error", error);
+      debug("Access Token error", error.message);
     }
   }
 
-  async apiFetch({ path, method = "POST", body }) {
+  async apiFetch({ path, method = "POST", params }) {
+    const [routeName] = path.split("/").slice(-1)
+    const body = JSON.stringify(params)
+    debug(`fetching route ${routeName} with ${body}...`)
     const token = await this.getAccessToken();
     const url = `${apiHost}/${path}`;
     const data = await fetch(url, {
@@ -57,9 +61,14 @@ class DilaApiClient {
       body
     })
       .then(r => r.json())
+      .then(data => {
+        if(data.error) {
+          throw `Error on API fetch: ${JSON.stringify(data)}`
+        } else return data;
+      })
       .catch(e => {
-        console.log("ERROR", e);
-        console.log({
+        debug("ERROR", e);
+        debug({
           url,
           body,
           token
@@ -72,6 +81,8 @@ class DilaApiClient {
   }
 
   toSection(section) {
+    const subSections = section.sections.map(s => this.toSection(s));
+    const subArticles = section.articles.map(a => this.toArticle(a));
     return {
       type: "section",
       data: {
@@ -79,10 +90,7 @@ class DilaApiClient {
         cid: section.cid,
         titre_ta: section.title
       },
-      children: [
-        ...section.sections.map(this.toSection),
-        ...section.articles.map(this.toArticle)
-      ]
+      children: [...subSections, ...subArticles]
     };
   }
 
@@ -104,14 +112,14 @@ class DilaApiClient {
   async fetchKaliConteneur(id) {
     return this.apiFetch({
       path: "dila/legifrance/lf-engine-app/consult/kaliContIdcc",
-      body: JSON.stringify({ id })
+      params: { id }
     });
   }
 
   async fetchKaliTexte(id) {
     return this.apiFetch({
       path: "dila/legifrance/lf-engine-app/consult/kaliText",
-      body: JSON.stringify({ id })
+      params: { id }
     });
   }
 
@@ -119,14 +127,14 @@ class DilaApiClient {
     // kaliArticle does not seem to work
     return this.apiFetch({
       path: `dila/legifrance/lf-engine-app/consult/getArticle`,
-      body: JSON.stringify({ id })
+      params: { id }
     });
   }
 
   async fetchCodeTableMatieres(params) {
     return this.apiFetch({
       path: "dila/legifrance/lf-engine-app/consult/code/tableMatieres",
-      body: JSON.stringify(params)
+      params
     });
   }
 }
