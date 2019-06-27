@@ -117,7 +117,7 @@ class DilaApiClient {
     ]
   }
 
-  async fetchKaliConteneurByIdcc({ idcc, embedArticles }) {
+  fetchKaliConteneurByIdcc({ idcc, embedArticles }) {
     const conteneur = this.apiFetch({
       path: "dila/legifrance/lf-engine-app/consult/kaliContIdcc",
       params: { id: idcc }
