@@ -6,7 +6,7 @@
   "repository": "https://github.com/SocialGouv/dila-api-client.git",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [
     "js",
@@ -19,5 +19,9 @@
     "debug": "^4.1.1",
     "node-fetch": "^2.6.0",
     "simple-oauth2": "^2.2.1"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0",
+    "jest-fetch-mock": "^2.1.2"
   }
 }

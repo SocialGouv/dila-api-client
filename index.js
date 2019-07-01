@@ -27,6 +27,9 @@ const credentials = {
 class DilaApiClient {
   constructor() {
     this.getAccessToken();
+    // for tests
+    this.apiHost = apiHost;
+    this.tokenHost = tokenHost;
   }
 
   async getAccessToken() {

@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`client.fetch make a call with correct token and parameters 1`] = `
+Object {
+  "body": "{\\"date\\":1234,\\"sctId\\":\\"\\",\\"textId\\":\\"LEGITEXT000006072050\\"}",
+  "headers": Object {
+    "Authorization": "Bearer 1234",
+    "content-type": "application/json",
+  },
+  "method": "POST",
+}
+`;
