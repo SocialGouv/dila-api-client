@@ -1,7 +1,9 @@
 {
-  "name": "dila-api-client",
+  "name": "@socialgouv/dila-api-client",
   "version": "0.0.2",
   "description": "a client for the DILA API that publishes the french law",
+  "homepage": "https://github.com/SocialGouv/dila-api-client",
+  "repository": "https://github.com/SocialGouv/dila-api-client.git",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,8 +13,8 @@
     "dila",
     "law"
   ],
-  "author": "adrien di pasquale",
-  "license": "MIT",
+  "author": "Incubateur des ministères Sociaux",
+  "license": "Apache-2.0",
   "dependencies": {
     "debug": "^4.1.1",
     "node-fetch": "^2.6.0",
