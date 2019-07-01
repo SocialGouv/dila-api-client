@@ -1,6 +1,6 @@
 const fetch = require("node-fetch");
 const OAuth2 = require("simple-oauth2");
-const debug = require('debug')('dila-api-client')
+const debug = require("debug")("dila-api-client");
 
 const clientId = process.env.OAUTH_CLIENT_ID;
 const clientSecret = process.env.OAUTH_CLIENT_SECRET;
@@ -47,9 +47,9 @@ class DilaApiClient {
   }
 
   async apiFetch({ path, method = "POST", params }) {
-    const [routeName] = path.split("/").slice(-1)
-    const body = JSON.stringify(params)
-    debug(`fetching route ${routeName} with ${body}...`)
+    const [routeName] = path.split("/").slice(-1);
+    const body = JSON.stringify(params);
+    debug(`fetching route ${routeName} with ${body}...`);
     const token = await this.getAccessToken();
     const url = `${apiHost}/${path}`;
     const data = await fetch(url, {
@@ -62,8 +62,8 @@ class DilaApiClient {
     })
       .then(r => r.json())
       .then(data => {
-        if(data.error) {
-          throw `Error on API fetch: ${JSON.stringify(data)}`
+        if (data.error) {
+          throw `Error on API fetch: ${JSON.stringify(data)}`;
         } else return data;
       })
       .catch(e => {
