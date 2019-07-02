@@ -8,6 +8,11 @@
   "scripts": {
     "test": "jest"
   },
+  "files": [
+    "index.js",
+    "README.md",
+    "yarn.lock"
+  ],
   "keywords": [
     "js",
     "dila",
