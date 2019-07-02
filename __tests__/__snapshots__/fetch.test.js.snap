@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`client.fetch make a call with correct token and parameters 1`] = `
+exports[`client.fetch send correct API parameters 1`] = `
 Object {
   "body": "{\\"date\\":1234,\\"sctId\\":\\"\\",\\"textId\\":\\"LEGITEXT000006072050\\"}",
   "headers": Object {
@@ -8,5 +8,22 @@ Object {
     "content-type": "application/json",
   },
   "method": "POST",
+}
+`;
+
+exports[`client.fetch send oauth credentials with process.env 1`] = `
+Object {
+  "auth": Object {
+    "authorizePath": "/api/oauth/authorize",
+    "tokenHost": "https://sandbox-oauth.aife.economie.gouv.fr",
+    "tokenPath": "/api/oauth/token",
+  },
+  "client": Object {
+    "id": "test-client-id",
+    "secret": "test-client-secret",
+  },
+  "options": Object {
+    "authorizationMethod": "body",
+  },
 }
 `;
