@@ -19,7 +19,7 @@ const dilaApi = new DilaApiClient();
 dilaApi
   .fetch({
     path: "consult/code/tableMatieres",
-    method: "POS",
+    method: "POST",
     params: {
       date: new Date().getTime(),
       sctId: "",
