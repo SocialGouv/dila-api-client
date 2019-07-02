@@ -1,4 +1,6 @@
-# dila-api-client
+# dila-api-client [![pipeline status](https://gitlab.factory.social.gouv.fr/SocialGouv/dila-api-client/badges/master/pipeline.svg)](https://gitlab.factory.social.gouv.fr/SocialGouv/dila-api-client/commits/master)
+
+[![NPM](https://nodei.co/npm/@socialgouv/dila-api-client.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/@socialgouv/dila-api-client)
 
 This JS package helps querying the DILA API
 
