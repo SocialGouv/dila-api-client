@@ -1,21 +1,33 @@
 {
-  "name": "dila-api-client",
-  "version": "0.0.2",
+  "name": "@socialgouv/dila-api-client",
+  "version": "1.0.1",
   "description": "a client for the DILA API that publishes the french law",
+  "homepage": "https://github.com/SocialGouv/dila-api-client",
+  "repository": "https://github.com/SocialGouv/dila-api-client.git",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
+  "files": [
+    "index.js",
+    "README.md",
+    "yarn.lock"
+  ],
   "keywords": [
     "js",
     "dila",
     "law"
   ],
-  "author": "adrien di pasquale",
-  "license": "MIT",
+  "author": "Incubateur des ministères Sociaux",
+  "license": "Apache-2.0",
   "dependencies": {
     "debug": "^4.1.1",
     "node-fetch": "^2.6.0",
     "simple-oauth2": "^2.2.1"
+  },
+  "devDependencies": {
+    "@socialgouv/eslint-config-recommended": "^0.9.1",
+    "jest": "^24.8.0",
+    "jest-fetch-mock": "^2.1.2"
   }
 }
