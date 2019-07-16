@@ -42,6 +42,8 @@ dilaApi
   .then(console.log);
 ```
 
+See also [./examples](./examples)
+
 ## Debug
 
 you need to set the `DEBUG=dila-api-client` environment variable in order to see
