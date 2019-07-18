@@ -1,4 +1,4 @@
-const DilaApi = require("@socialgouv/dila-api-client");
+const DilaApi = require("..");
 
 const dilaClient = new DilaApi();
 
