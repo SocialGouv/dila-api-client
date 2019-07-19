@@ -30,14 +30,11 @@ dilaApi
   })
   .then(console.log);
 
-// fetch table des matières code-du-travail
+// fetch list of available codes
 dilaApi
   .fetch({
     path: "list/code",
-    method: "POST",
-    params: {
-      test: 42
-    }
+    method: "POST"
   })
   .then(console.log);
 ```

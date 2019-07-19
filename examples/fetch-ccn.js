@@ -1,5 +1,7 @@
-const DilaApi = require("..");
+const fs = require("fs");
 const pAll = require("p-all");
+
+const DilaApi = require("..");
 
 const dilaClient = new DilaApi();
 
@@ -23,6 +25,8 @@ const sortByKey = getter => (a, b) => {
 
 const JSONLog = data => console.log(JSON.stringify(data, null, 2));
 
+const isValidNode = node => node.etat !== "ABROGE" && node.etat !== "PERIME";
+
 const getKaliCont = id =>
   dilaClient.fetch({
     path: "consult/kaliCont",
@@ -32,7 +36,7 @@ const getKaliCont = id =>
     }
   });
 
-const getKaliText = id =>
+const getKaliText = (id, tries = 0) =>
   dilaClient
     .fetch({
       path: "consult/kaliText",
@@ -45,38 +49,42 @@ const getKaliText = id =>
     .then(text => ({
       ...text,
       articles: text.articles.sort(sortByKey(article => article.intOrdre))
-    }));
+    }))
+    // retry
+    .catch(e => {
+      console.log(`getKaliText ${id} ${tries + 1}/3`);
+      if (tries < 3) {
+        return getKaliText(id, tries + 1);
+      }
+      throw e;
+    });
 
-const isValidNode = node => node.etat !== "ABROGE" && node.etat !== "PERIME";
-
-// filter outdated content and order sections recursively
-const filterSortSections = node => ({
+// filter and sort outdated content and order sections recursively
+const orderSections = node => ({
   ...node,
   sections: node.sections
     .filter(isValidNode)
-    .map(filterSortSections)
+    .map(orderSections)
     .sort(sortByKey(section => section.intOrdre))
 });
 
-// fetch all texts for a given section
+// fetch the section texts if any
 // keep original dateModif to apply sort
 const fetchSectionTexts = section =>
   pAll(
-    section.sections.filter(isValidNode).map(
-      text => async () => ({
-        ...(await getKaliText(text.id)),
-        // keep the dateModif from the kaliCont call, looks more accurate to matche legifrance displa order
-        dateModif: text.dateModif
-      }),
-      {
-        concurrency: 5
-      }
-    )
+    section.sections.filter(isValidNode).map(text => async () => ({
+      ...((text.id.match(/^KALITEXT/) && (await getKaliText(text.id))) || text),
+      // keep the dateModif from the kaliCont call, looks more accurate to match legifrance display order
+      dateModif: text.dateModif
+    })),
+    {
+      concurrency: 3
+    }
   );
 
-// embed quali texts for attachés + salaires
+// embed kali texts for attachés + salaires
 // conteneur first section is always "texte de base"
-// conteneur following sections are "textes attachées" and "textes salaires"
+// conteneur following sections are "textes attachées" and "textes salaires" but are not provided initially in the conteneur data
 const embedKaliTexts = async conteneur => ({
   ...conteneur,
   sections: [
@@ -94,14 +102,40 @@ const embedKaliTexts = async conteneur => ({
   ]
 });
 
+// fetch all conventions from this fixed list
+const conventions = require("./kali.json");
+
+// for each convention, fetch convention conteneur, populate conteneur texts, and ouput to JSON file.
+pAll(
+  conventions.map(convention => () => {
+    const filePath = `./ccns/${convention.id}.json`;
+    if (fs.existsSync(filePath)) {
+      console.log(`skip ${filePath}`);
+      return Promise.resolve();
+    }
+    console.log(`fetch ${convention.id}`);
+    return getKaliCont(convention.id)
+      .then(orderSections)
+      .then(embedKaliTexts)
+      .then(data => {
+        fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+        console.log(`wrote ${filePath}`);
+      })
+      .catch(console.log);
+  }),
+  { concurrency: 1 }
+)
+  .then(() => console.log("done !"))
+  .catch(console.log);
+
 // IDCC 1747 - Convention collective nationale des activités industrielles de boulangerie et pâtisserie du 13 juillet 1993.
 
 //
 // texte de base for KALICONT000005635691 is KALITEXT000005657284
 // conteneur for kali KALITEXT000005657284 is KALICONT000005635691
 //
-getKaliCont("KALICONT000005635691")
-  .then(filterSortSections)
-  .then(embedKaliTexts)
-  .then(JSONLog)
-  .catch(console.log);
+// getKaliCont("KALICONT000005635691")
+//   .then(filterSortSections)
+//   .then(embedKaliTexts)
+//   .then(JSONLog)
+//   .catch(console.log);
