@@ -25,7 +25,7 @@ const sortByKey = getter => (a, b) => {
 
 const JSONLog = data => console.log(JSON.stringify(data, null, 2));
 
-const isValidNode = node => node.etat !== "ABROGE" && node.etat !== "PERIME";
+const isValidSection = node => node.etat !== "ABROGE" && node.etat !== "PERIME";
 
 const getKaliCont = id =>
   dilaClient.fetch({
@@ -59,12 +59,28 @@ const getKaliText = (id, tries = 0) =>
       throw e;
     });
 
+const numify = id => parseInt(id.replace(/^KALIARTI/, ""));
+
+// the API returns all the version of a given article. we pick the latest one
+const isValidArticle = (current, index, articles) => {
+  const maxVersion = Math.max(
+    ...articles
+      .filter(
+        article => article.cid === current.cid && article.id !== current.id
+      )
+      .map(article => numify(article.id)),
+    0
+  );
+  return numify(current.id) > maxVersion;
+};
+
 // filter and sort outdated content and order sections recursively
-const orderSections = node => ({
+const filterSections = node => ({
   ...node,
+  articles: (node.articles && node.articles.filter(isValidArticle)) || [],
   sections: node.sections
-    .filter(isValidNode)
-    .map(orderSections)
+    .filter(isValidSection)
+    .map(filterSections)
     .sort(sortByKey(section => section.intOrdre))
 });
 
@@ -72,7 +88,7 @@ const orderSections = node => ({
 // keep original dateModif to apply sort
 const fetchSectionTexts = section =>
   pAll(
-    section.sections.filter(isValidNode).map(text => async () => ({
+    section.sections.filter(isValidSection).map(text => async () => ({
       ...((text.id.match(/^KALITEXT/) && (await getKaliText(text.id))) || text),
       // keep the dateModif from the kaliCont call, looks more accurate to match legifrance display order
       dateModif: text.dateModif
@@ -102,8 +118,13 @@ const embedKaliTexts = async conteneur => ({
   ]
 });
 
+const fetchCCN = id =>
+  getKaliCont(id)
+    .then(filterSections)
+    .then(embedKaliTexts);
+
 // fetch all conventions from this fixed list
-const conventions = require("./kali.json");
+const conventions = require("../kali.json");
 
 // for each convention, fetch convention conteneur, populate conteneur texts, and ouput to JSON file.
 pAll(
@@ -114,9 +135,7 @@ pAll(
       return Promise.resolve();
     }
     console.log(`fetch ${convention.id}`);
-    return getKaliCont(convention.id)
-      .then(orderSections)
-      .then(embedKaliTexts)
+    return fetchCCN(convention.id)
       .then(data => {
         fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
         console.log(`wrote ${filePath}`);
@@ -134,8 +153,7 @@ pAll(
 // texte de base for KALICONT000005635691 is KALITEXT000005657284
 // conteneur for kali KALITEXT000005657284 is KALICONT000005635691
 //
-// getKaliCont("KALICONT000005635691")
-//   .then(filterSortSections)
-//   .then(embedKaliTexts)
+// KALICONT000005635173 = syntec
+// fetchCCN("KALICONT000005635173")
 //   .then(JSONLog)
 //   .catch(console.log);
