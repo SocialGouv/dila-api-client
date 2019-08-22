@@ -125,20 +125,3 @@ test("fetch forward api error", async () => {
   );
 });
 
-// test("send oauth credentials with process.env", async () => {
-//   const client = new DilaApiClient();
-//   const res = await client.fetch({
-//     path: "consult/code/tableMatieres",
-//     method: "POST",
-//     params: {
-//       date: 1234,
-//       sctId: "",
-//       textId: "LEGITEXT000006072050"
-//     }
-//   });
-
-//   expect(res).toMatchSnapshot();
-//   expect(OAuth2.create.mock.calls.length).toEqual(4);
-//   expect(OAuth2.create.mock.calls[0]).toMatchSnapshot();
-// });
-// });
