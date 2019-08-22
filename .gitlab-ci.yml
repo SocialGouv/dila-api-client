@@ -2,13 +2,12 @@ image: node:10
 
 cache:
   paths:
-  - node_modules/
-
-stages:
-  - test
+    - node_modules/
 
 test:
-  stage: test
   script:
-   - yarn
-   - yarn test
+    - yarn policies set-version v1
+    - yarn --frozen-lockfile
+    - yarn build
+    - yarn lint
+    - yarn test
