@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@socialgouv/eslint-config-recommended": "^0.9.4",
-    "jest": "^24.8.0",
+    "jest": "^24.9.0",
     "jest-fetch-mock": "^2.1.2"
   }
 }
