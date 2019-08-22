@@ -1,8 +1,10 @@
-# dila-api-client [![pipeline status](https://gitlab.factory.social.gouv.fr/SocialGouv/dila-api-client/badges/master/pipeline.svg)](https://gitlab.factory.social.gouv.fr/SocialGouv/dila-api-client/commits/master)
+# Dila Api Client
 
-[![NPM](https://nodei.co/npm/@socialgouv/dila-api-client.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/@socialgouv/dila-api-client)
+[![Build Status][travis-image]][travis-url]
+[![Pipeline status][gitlab-image]](gitlab-url)
+[![NPM version][npm-image]][npm-url]
 
-This JS package helps querying the DILA API
+> This JS package helps querying the DILA API
 
 ## Usage
 
@@ -45,3 +47,32 @@ See also [./examples](./examples)
 
 you need to set the `DEBUG=dila-api-client` environment variable in order to see
 the output of inner logs.
+
+
+## Release policy
+
+### Auto
+
+Trigger a custom build on [Travis][travis-url] (in the "More options" right menu) on the `master` branch with a custom config:
+
+```yml
+env:
+  global:
+    - RELEASE=true
+```
+
+You can change the lerna arguments though the `LERNA_ARGS` variable.
+
+```yml
+env:
+  global:
+    - STANDARD_VERSION_ARGS="--release-as major"
+    - RELEASE=true
+```
+
+[gitlab-image]: https://gitlab.factory.social.gouv.fr/SocialGouv/dila-api-client/badges/master/pipeline.svg
+[gitlab-url]: https://gitlab.factory.social.gouv.fr/SocialGouv/dila-api-client/commits/master
+[npm-image]: http://img.shields.io/npm/v/@socialgouv/dila-api-client.svg
+[npm-url]: https://npmjs.org/package/@socialgouv/dila-api-client
+[travis-image]: http://travis-ci.com/SocialGouv/dila-api-client.svg?branch=master
+[travis-url]: http://travis-ci.com/SocialGouv/dila-api-client
