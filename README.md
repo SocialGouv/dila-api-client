@@ -1,5 +1,6 @@
 # Dila Api Client
 
+[![NPM][npm-banner]][npm-url]
 [![Build Status][travis-image]][travis-url]
 [![Pipeline status][gitlab-image]](gitlab-url)
 [![NPM version][npm-image]][npm-url]
@@ -72,6 +73,7 @@ env:
 
 [gitlab-image]: https://gitlab.factory.social.gouv.fr/SocialGouv/dila-api-client/badges/master/pipeline.svg
 [gitlab-url]: https://gitlab.factory.social.gouv.fr/SocialGouv/dila-api-client/commits/master
+[npm-banner]: https://nodei.co/npm/@socialgouv/dila-api-client.png?downloads=true&downloadRank=true&stars=true
 [npm-image]: http://img.shields.io/npm/v/@socialgouv/dila-api-client.svg
 [npm-url]: https://npmjs.org/package/@socialgouv/dila-api-client
 [travis-image]: http://travis-ci.com/SocialGouv/dila-api-client.svg?branch=master
