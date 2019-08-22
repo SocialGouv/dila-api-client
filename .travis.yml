@@ -1,0 +1,73 @@
+---
+
+dist: xenial
+language: minimal
+git:
+  depth: 5
+
+#
+
+.env:
+  github_keys: &github_keys
+    - secure: "J3xISp64BAM9qM2MrodEeFLcNZ7y5BZRMjmmNOpsHoaK6iar261EMcgEIfeD++h+RNzhjB8xxLAzsGU3NP5EBCNg2lY1S0bWLhAQ4VSBV5zKUz83q+V99cqre57lEoVzAjOKKXUPgMarZDrZ18BXDwS00axj2zqqbZ1f1gZvxa168DX7IJSuGb2KYOpLtyWDF1ktwQRHHCEewyzuQrqhvrAL50f9ojxLGIlYjpQk5owIIFlGnc/6bt+gbIgLKNOiGV140oHn+FWWfj0SI0LsLDXJvgX5GEJBKYjFhm8741vtei0cyanV/IvrjC06DtrRSXcPZVTxfldnjb/lF+eNhLgMZqgUr1I8Op1XvGX7aAWdncgqFbUcFOXSz0iFT4W5SRS3+jvBH07UIcb3X9dhDq/GKhXcLl3bDwkmhcxGqWLgv6kX8klFSWghWWiKlr/PTY6ofzyZyyHFTh6QwxO/rB/i4yubY5crwJYlUjuj4G6WRE41dH5a07kcRwNIy9hkvoTx9oNV3QSZUeSyaiBD/sn59Bz7G0qqSskVQmDNa0OWYyK6QF1SMxeCy1lmfF4RAkaB5zhdXD/8rCXr53T/TRPLbbK4Kv3fBTic+w/4zISY3lezrF705z5QJfxreo/P2Ree+PxCmhDSkZdQMS1ZZUnhrWHh+ZFt6skwT2pvrlQ="
+
+  npm_keys: &npm_keys
+    - secure: "trl+h+Zd+3iZO4vsaCJGNIOdKGervkyawPNMn3Tb1+KyaNMPwMkdNxAl9OfKQNSeX1VyIuUqNfimKHDgdUoPXiIfhlA1X7TtlQq42hUcDGkGBWUoroMmgBpikVlC+tEJKLOP//6wIi5DGGM9ZpQZc6i5HSIIgGd3k/UB2FwUVW0ct15lyj5PUuGg96KtGVcHgohXK9+u0Tp/0J6boAnNxsBxC5aYKZSs1AtnjLU3b1DfZGAfJH2WcgO1rbz2YIdHRONK+WfnMpWq4mbl9SZbZFhygqkNCGZUqVTglq+dU5wnZ8q1onN32l0dG9TlrUA5pEy8kFGk7BWGJEeTe4PYOy+WqKrOowj1hv0yylheEgqdFYZuWidVVzoHYqGBmNrAySs2ozI31/LHDxmX6ib8jEUrtZX9Jgixc7HjFjlzJwyxSsi4XWnDabigjqDUCIXi0JfctB04AcSavTtAW4BRCib0dkR1+oHZRTF25Gm1diXrHe5c/3k9uQqyNFupHlq1FM9FpGq3zxs73ajbqc9jDhaV6b5p1DRmO2TRarPJaWXP7YRkhfTufndzpuxUOzEDKvAYcq5ewCohBhPU8NLFbdA7aeS7XK9PqPpzI6fbPyq33beU4QLjYdVXg8ShoLngKWUD7GCAhxeQciNXETfMnaqB5v34uRwGEbqhusHf/KM="
+    - secure: "m9FkGGDLmmPAg5ghY3gKOpE0jwLC3+G6EY3zH6wU1J1CbUZ5zDYkVpXJ5KKFYOR6StpI+axXk893PCDQ1dOPNkgNCxTg/2egVmNTKSdtBVuLvIZAN15DejoqWLMJm7Cxd+XVKRYfXaCR1BhILl+K41BYLk0CMvsG/gGjlNVXlCqhRfku3MTK5OK3Vuwdwp+oHNJxLW/gMYUsxT/VydJiHJ+dBbwv5TZOaYvVWNfM9ZiafFp1V27xWDYM0IlH1x0380gwAVPzBcbMxx1CaJ+pUjcnksGFVrHzMib3guerjfbp1BcxRb7L0RV1uRevNioedeEM6TDfj0by+/8JQGEUG0hHpKrdtxfG49tjIf4uD0EGOkOPrjuyW7Ws7S/GbDSxNjCyU+hDRPNVqIiZCer9//7p+QrrKbx17+aZSPGuYlpadaz8xG4fqsbZZ3eifMX1xrcjwc3cQPhXYKJKinyjxwZvyrabIXAksvLa4e0CLj0QDnjGntvbLGoQkGiXT1iHV4nImO2oxQ+AI9VQ7Dp4C33NKTlgjciRHiNIqVmMGUbjwIf0X0ufLu+ySFm886RlwoqQYcHKJqNz+rQz5ye2C1FwLqrBs9ZwH7C4ENua50mCeQXubhqiMNU0bSZl8U9peJ2/IFWO7efofIxronl6HOokabl8hxz06w7WxNpStUs="
+
+#
+
+.node_stage: &node_stage
+  language: node_js
+  node_js: "10"
+  cache: yarn
+  before_install:
+    - curl -o- -L https://yarnpkg.com/install.sh | bash
+    - export PATH="$HOME/.yarn/bin:$PATH"
+  install:
+    - yarn --frozen-lockfile
+
+#
+
+jobs:
+  include:
+    - stage: Build
+      <<: *node_stage
+      if: NOT env(RELEASE)
+      env: *npm_keys
+      script:
+        - yarn build
+        - yarn lint
+        - yarn test --coverage
+      after_success:
+        - npx codecov
+      deploy:
+        provider: npm
+        #
+        api_key: "$NPM_TOKEN"
+        email: "$NPM_EMAIL"
+        skip_cleanup: true
+        on:
+          tags: true
+
+    - stage: Release
+      <<: *node_stage
+      if: env(RELEASE)
+      name: Make a new release 🎉
+      git:
+        # NOTE(douglasduteil): disable git --depth
+        # Try to have all the commits for the release Change Log
+        # see travis-ci/travis-ci#3412
+        depth: 9999999 # Over 9000 !
+      env: *github_keys
+      install: skip
+      before_script:
+        - git checkout ${TRAVIS_BRANCH}
+        - git config user.name "Social Groovy Bot"
+        - git config user.email "45039513+SocialGroovyBot@users.noreply.github.com"
+        - git remote set-url origin https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
+      script:
+        - npx standard-version ${STANDARD_VERSION_ARGS}
+        - git push --follow-tags origin master
+        - CONVENTIONAL_GITHUB_RELEASER_TOKEN=${GITHUB_TOKEN} npx conventional-github-releaser -p angular
+
