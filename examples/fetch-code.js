@@ -3,7 +3,7 @@ const DilaApi = require("..");
 const dilaClient = new DilaApi();
 
 /*
- fetch a full code from table des matieres and add all individual articles
+  fetch a full code from table des matieres and add all individual articles
 */
 
 const tableMatieres = params =>
