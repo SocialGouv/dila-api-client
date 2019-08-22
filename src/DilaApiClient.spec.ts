@@ -124,4 +124,3 @@ test("fetch forward api error", async () => {
     `"Error on API fetch: {\\"error\\":\\"YATTA!\\"}"`
   );
 });
-
