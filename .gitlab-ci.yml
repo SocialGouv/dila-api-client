@@ -20,6 +20,4 @@ release:
     - git config user.email "45039513+SocialGroovyBot@users.noreply.github.com"
     - git remote set-url origin https://${GITHUB_TOKEN}@github.com/${CI_PROJECT_PATH}.git
   script:
-    - npx standard-version ${STANDARD_VERSION_ARGS}
-    - git push --follow-tags origin master
-    - CONVENTIONAL_GITHUB_RELEASER_TOKEN=${GITHUB_TOKEN} npx conventional-github-releaser -p angular
+    - npx semantic-release
