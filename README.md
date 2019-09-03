@@ -1,9 +1,13 @@
 # Dila Api Client
 
-[![NPM][npm-banner]][npm-url]
+[![NPM][npm-banner]][npm-url]  
+
 [![Build Status][travis-image]][travis-url]
 [![Pipeline status][gitlab-image]](gitlab-url)
 [![NPM version][npm-image]][npm-url]
+[![codecov][codecov-image]][codecov-url]
+[![jest][jest-image]][jest-url]
+![renovate][renovate-image]
 
 > This JS package helps querying the DILA API
 
@@ -71,6 +75,10 @@ env:
     - RELEASE=true
 ```
 
+[codecov-image]: https://codecov.io/gh/SocialGouv/dila-api-client/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/SocialGouv/dila-api-client
+[jest-image]: https://jestjs.io/img/jest-badge.svg
+[jest-url]: https://github.com/facebook/jest
 [gitlab-image]: https://gitlab.factory.social.gouv.fr/SocialGouv/dila-api-client/badges/master/pipeline.svg
 [gitlab-url]: https://gitlab.factory.social.gouv.fr/SocialGouv/dila-api-client/commits/master
 [npm-banner]: https://nodei.co/npm/@socialgouv/dila-api-client.png?downloads=true&downloadRank=true&stars=true
@@ -78,3 +86,4 @@ env:
 [npm-url]: https://npmjs.org/package/@socialgouv/dila-api-client
 [travis-image]: http://travis-ci.com/SocialGouv/dila-api-client.svg?branch=master
 [travis-url]: http://travis-ci.com/SocialGouv/dila-api-client
+[renovate-image]: https://badges.renovateapi.com/github/SocialGouv/dila-api-client
