@@ -6,7 +6,7 @@ const DilaApi = require("..");
 const dilaClient = new DilaApi();
 
 /*
- fetch KALI "conteneur" : a container contains several sections :
+  fetch KALI "conteneur" : a container contains several sections :
   - 0  : texte de base
   - 1+ : textes attachés
 
