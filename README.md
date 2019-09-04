@@ -3,7 +3,7 @@
 [![NPM][npm-banner]][npm-url]  
 
 [![Build Status][travis-image]][travis-url]
-[![Pipeline status][gitlab-image]](gitlab-url)
+[![Pipeline status][gitlab-image]][gitlab-url]
 [![NPM version][npm-image]][npm-url]
 [![codecov][codecov-image]][codecov-url]
 [![jest][jest-image]][jest-url]
