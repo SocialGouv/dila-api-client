@@ -3225,10 +3225,10 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
   integrity sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0=
 
-simple-oauth2@^2.5.1:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/simple-oauth2/-/simple-oauth2-2.5.1.tgz#79a5cb7e7522fb2dc07808c58d9b739a6c8eea2e"
-  integrity sha512-Ovr8+ipgY5QYhaEaKFRRKdY0ZUckZgmF2bBN1b5dS8jMMptBeyOiTCqOFCu7ddp1BSsifd6F60auXsZjdZr+yg==
+simple-oauth2@^2.5.2:
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/simple-oauth2/-/simple-oauth2-2.5.2.tgz#337bcd4b44c76e976caa77a1c7b00612b2500aeb"
+  integrity sha512-8qjf+nHRdSUllFjjfpnonrU1oF/HNVbDle5HIbvXRYiy38C7KUvYe6w0ZZ//g4AFB6VNWuiZ80HmnycR8ZFDyQ==
   dependencies:
     "@hapi/joi" "^15.1.1"
     date-fns "^2.2.1"
