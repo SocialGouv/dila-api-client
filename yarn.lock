@@ -436,10 +436,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.7.tgz#01e4ea724d9e3bd50d90c11fd5980ba317d8fa11"
   integrity sha512-E6Zn0rffhgd130zbCbAr/JdXfXkoOUFAKNs/rF8qnafSJ8KYaA/j3oz7dcwal+lYjLA7xvdd5J4wdYpCTlP8+w==
 
-"@types/simple-oauth2@^2.5.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@types/simple-oauth2/-/simple-oauth2-2.5.0.tgz#57d2dd3bfb9b28f700989c540c0aa5ba7e1661d7"
-  integrity sha512-VPL8H+ggBKiHK7iW1O7jE80uEJeS9h7oFHTCBOXgfxv5NM94uxwqo7w55U3+C3WoBNKv48V1uZOxCclE1gQfTg==
+"@types/simple-oauth2@^2.5.1":
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/@types/simple-oauth2/-/simple-oauth2-2.5.1.tgz#52c8367cc44f0ab0b7ebd6ba95162d355b13978f"
+  integrity sha512-jDBt8nDnLvoDAFi3QMZZRgnateqbPReYOe2tZZ75IKzsq0jzWYyn6eFYAt4tgOZqloXL7s0/guF07wjK1ycEug==
 
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
