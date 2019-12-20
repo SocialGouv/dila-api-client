@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 import OAuth2 from "simple-oauth2";
 import { API_HOST, CREDENTIALS, TOKEN_HOST } from "./constants";
 
-const debug = Debug("dila-api-client");
+const debug = Debug("@socialgouv/dila-api-client");
 
 export class DilaApiClient {
   public globalToken?: string;
