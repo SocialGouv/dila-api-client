@@ -29,21 +29,21 @@ test("getAccessToken return token for OAuth2 transaction", async () => {
   expect(OAuth2.create).toHaveBeenCalledTimes(1);
   const [[credentials]] = (OAuth2.create as jest.Mock).mock.calls;
   expect(credentials).toMatchInlineSnapshot(`
-            Object {
-              "auth": Object {
-                "authorizePath": "/api/oauth/authorize",
-                "tokenHost": "https://sandbox-oauth.aife.economie.gouv.fr",
-                "tokenPath": "/api/oauth/token",
-              },
-              "client": Object {
-                "id": "",
-                "secret": "",
-              },
-              "options": Object {
-                "authorizationMethod": "body",
-              },
-            }
-      `);
+    Object {
+      "auth": Object {
+        "authorizePath": "/api/oauth/authorize",
+        "tokenHost": "https://oauth.aife.economie.gouv.fr",
+        "tokenPath": "/api/oauth/token",
+      },
+      "client": Object {
+        "id": "",
+        "secret": "",
+      },
+      "options": Object {
+        "authorizationMethod": "body",
+      },
+    }
+  `);
 
   expect(token).toBe(1234);
   expect(client.globalToken).toBe(1234);
