@@ -5,10 +5,10 @@ const CLIENT_SECRET = process.env.OAUTH_CLIENT_SECRET || "";
 
 export const API_HOST =
   process.env.API_HOST ||
-  "https://sandbox-api.aife.economie.gouv.fr/dila/legifrance/lf-engine-app";
+  "https://api.aife.economie.gouv.fr/dila/legifrance-beta/lf-engine-app";
 
 export const TOKEN_HOST =
-  process.env.TOKEN_HOST || "https://sandbox-oauth.aife.economie.gouv.fr";
+  process.env.TOKEN_HOST || "https://oauth.aife.economie.gouv.fr";
 
 export const CREDENTIALS: ModuleOptions = {
   auth: {

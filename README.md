@@ -1,6 +1,6 @@
 # Dila Api Client
 
-[![NPM][npm-banner]][npm-url]  
+[![NPM][npm-banner]][npm-url]
 
 [![Build Status][travis-image]][travis-url]
 [![Pipeline status][gitlab-image]][gitlab-url]
@@ -16,6 +16,8 @@
 You need to set two environment variables : `OAUTH_CLIENT_ID` and `OAUTH_CLIENT_SECRET`.
 
 These variables are the "oauth identifier" defined in your custom application in the [AIFE portal](https://developer.aife.economie.gouv.fr)
+
+You can also override the variables `API_HOST` (https://api.aife.economie.gouv.fr/dila/legifrance-beta/lf-engine-app) and `TOKEN_HOST` (https://oauth.aife.economie.gouv.fr) for AIFE endpoints.
 
 ## Récupérer la table des matières d'un code
 
@@ -52,7 +54,6 @@ See also [./examples](./examples)
 
 you need to set the `DEBUG=dila-api-client` environment variable in order to see
 the output of inner logs.
-
 
 ## Release policy
 
