@@ -22,7 +22,7 @@ You can also override the variables `API_HOST` (https://api.aife.economie.gouv.f
 ## Récupérer la table des matières d'un code
 
 ```js
-const DilaApiClient = require("dila-api-client");
+const DilaApiClient = require("@socialgouv/dila-api-client");
 
 const dilaApi = new DilaApiClient();
 
