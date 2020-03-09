@@ -1,4 +1,4 @@
-# Dila Api Client
+# @socialgouv/dila-api-client
 
 [![NPM][npm-banner]][npm-url]
 
@@ -17,7 +17,14 @@ You need to set two environment variables : `OAUTH_CLIENT_ID` and `OAUTH_CLIENT_
 
 These variables are the "oauth identifier" defined in your custom application in the [AIFE portal](https://developer.aife.economie.gouv.fr)
 
-You can also override the variables `API_HOST` (https://api.aife.economie.gouv.fr/dila/legifrance-beta/lf-engine-app) and `TOKEN_HOST` (https://oauth.aife.economie.gouv.fr) for AIFE endpoints.
+### Envs
+
+Env        | Name | Value
+-----------|------|---------
+Prod       | API_HOST   | https://api.aife.economie.gouv.fr/dila/legifrance-beta/lf-engine-app
+Prod       | TOKEN_HOST | https://oauth.aife.economie.gouv.fr
+Sandbox    | API_HOST   | https://sandbox-api.aife.economie.gouv.fr/dila/legifrance/lf-engine-app
+Sandbo     | TOKEN_HOST | https://sandbox-oauth.aife.economie.gouv.fr
 
 ## Récupérer la table des matières d'un code
 
