@@ -52,7 +52,13 @@ export class DilaApiClient {
         "content-type": "application/json"
       },
       method
-    }).then(r => r.json());
+    }).then(r => {
+      if (r.status === 401 && this.globalToken) {
+        this.globalToken = undefined;
+        return this.fetch({ path, method, params });
+      }
+      return r.json();
+    });
 
     if (data.error) {
       throw new Error(`Error on API fetch: ${JSON.stringify(data)}`);
