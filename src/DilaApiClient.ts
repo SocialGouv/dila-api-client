@@ -5,6 +5,8 @@ import { API_HOST, CREDENTIALS, TOKEN_HOST } from "./constants";
 
 const debug = Debug("@socialgouv/dila-api-client");
 
+type FetchReturnType = {};
+
 export class DilaApiClient {
   public globalToken?: string;
 
@@ -38,7 +40,7 @@ export class DilaApiClient {
     path: string;
     method?: string;
     params: object;
-  }) {
+  }): Promise<FetchReturnType> {
     const [routeName] = path.split("/").slice(-1);
     const body = JSON.stringify(params);
     debug(`fetching route ${routeName} with ${body}...`);
