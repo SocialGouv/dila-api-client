@@ -9,6 +9,7 @@ jest.mock("node-fetch", () => fetchMock);
 
 beforeEach(() => {
   (OAuth2.create as jest.Mock).mockReset();
+  (fetchMock as jest.Mock).mockReset();
 });
 
 test("getAccessToken return token for OAuth2 transaction", async () => {
@@ -123,4 +124,69 @@ test("fetch forward api error", async () => {
   ).rejects.toThrowErrorMatchingInlineSnapshot(
     `"Error on API fetch: {\\"error\\":\\"YATTA!\\"}"`
   );
+});
+
+test("fetch a new token on 401", async () => {
+  fetch.mockResponses(
+    [JSON.stringify({ message: "ok" }), { status: 200 }],
+    [JSON.stringify({ message: "ok" }), { status: 200 }],
+    [
+      JSON.stringify({ error: "Unauthorized" }),
+      {
+        status: 401
+      }
+    ],
+    [JSON.stringify({ message: "ok" }), { status: 200 }],
+    [JSON.stringify({ message: "ok" }), { status: 200 }]
+  );
+  const tokens = ["1234", "5678"];
+  let tokenIndex = 0;
+  (OAuth2.create as jest.Mock).mockReturnValue({
+    accessToken: {
+      create: () => {
+        const data = { token: { access_token: tokens[tokenIndex % 2] } };
+        tokenIndex += 1;
+        return data;
+      }
+    },
+    clientCredentials: {
+      getToken: () => Promise.resolve("fox")
+    }
+  });
+  const client = new DilaApiClient();
+
+  expect(OAuth2.create).toHaveBeenCalledTimes(0);
+  expect(client.globalToken).toEqual(undefined);
+
+  // first call (200)
+  await client.fetch({
+    params: {},
+    path: "whatever"
+  });
+  expect(OAuth2.create).toHaveBeenCalledTimes(1);
+  expect(client.globalToken).toEqual("1234");
+
+  // second call (200), kept the same token
+  await client.fetch({
+    params: {},
+    path: "whatever"
+  });
+  expect(OAuth2.create).toHaveBeenCalledTimes(1);
+  expect(client.globalToken).toEqual("1234");
+
+  // first gets a 401, ask the token then get a 200
+  await client.fetch({
+    params: {},
+    path: "whatever"
+  });
+  expect(OAuth2.create).toHaveBeenCalledTimes(2);
+  expect(client.globalToken).toEqual("5678");
+
+  // this is a 200, kep the last token
+  await client.fetch({
+    params: {},
+    path: "whatever"
+  });
+  expect(OAuth2.create).toHaveBeenCalledTimes(2);
+  expect(client.globalToken).toEqual("5678");
 });
