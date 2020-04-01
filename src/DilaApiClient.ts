@@ -38,7 +38,7 @@ export class DilaApiClient {
     path: string;
     method?: string;
     params: object;
-  }) {
+  }): Promise<any> {
     const [routeName] = path.split("/").slice(-1);
     const body = JSON.stringify(params);
     debug(`fetching route ${routeName} with ${body}...`);
@@ -52,7 +52,13 @@ export class DilaApiClient {
         "content-type": "application/json"
       },
       method
-    }).then(r => r.json());
+    }).then(r => {
+      if (r.status === 401 && this.globalToken) {
+        this.globalToken = undefined;
+        return this.fetch({ path, method, params });
+      }
+      return r.json();
+    });
 
     if (data.error) {
       throw new Error(`Error on API fetch: ${JSON.stringify(data)}`);
