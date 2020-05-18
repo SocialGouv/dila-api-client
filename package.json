@@ -29,7 +29,7 @@
     "simple-oauth2": "^3.4.0"
   },
   "devDependencies": {
-    "@socialgouv/tslint-config-recommended": "^0.21.0",
+    "@socialgouv/tslint-config-recommended": "^0.22.1",
     "@types/debug": "^4.1.5",
     "@types/jest": "^25.2.2",
     "@types/node": "^12.12.31",
