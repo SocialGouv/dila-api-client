@@ -1,6 +1,7 @@
 # @socialgouv/dila-api-client
 
 [![NPM][npm-banner]][npm-url]
+
 [![Github Master CI Status][github-image]][github-url]
 [![NPM version][npm-image]][npm-url]
 [![codecov][codecov-image]][codecov-url]
@@ -66,7 +67,7 @@ Releases are automaticly made through our [GitHub Actions][github-url] strictly 
 
 [codecov-image]: https://codecov.io/gh/SocialGouv/dila-api-client/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/SocialGouv/dila-api-client
-[github-image]: https://github.com/SocialGouv/dila-api-client/workflows/ci/badge.svg?branch=master
+[github-image]: https://github.com/SocialGouv/dila-api-client/workflows/main/badge.svg?branch=master
 [github-url]: https://github.com/SocialGouv/dila-api-client/actions/
 [jest-image]: https://jestjs.io/img/jest-badge.svg
 [jest-url]: https://github.com/facebook/jest
