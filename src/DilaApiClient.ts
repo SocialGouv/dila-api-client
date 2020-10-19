@@ -1,6 +1,7 @@
 import Debug from "debug";
 import fetch from "node-fetch";
 import OAuth2 from "simple-oauth2";
+
 import { API_HOST, CREDENTIALS, TOKEN_HOST } from "./constants";
 
 const debug = Debug("@socialgouv/dila-api-client");
@@ -55,7 +56,7 @@ export class DilaApiClient {
     }).then((r) => {
       if (r.status === 401 && this.globalToken) {
         this.globalToken = undefined;
-        return this.fetch({ path, method, params });
+        return this.fetch({ method, params, path });
       }
       return r.json();
     });

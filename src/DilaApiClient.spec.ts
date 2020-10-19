@@ -1,5 +1,6 @@
 import fetchMock, { FetchMock } from "jest-fetch-mock";
 import OAuth2 from "simple-oauth2";
+
 import { DilaApiClient } from "./DilaApiClient";
 
 jest.mock("simple-oauth2");
