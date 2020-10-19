@@ -14,13 +14,13 @@ export const CREDENTIALS: ModuleOptions = {
   auth: {
     authorizePath: "/api/oauth/authorize",
     tokenHost: TOKEN_HOST,
-    tokenPath: "/api/oauth/token"
+    tokenPath: "/api/oauth/token",
   },
   client: {
     id: CLIENT_ID,
-    secret: CLIENT_SECRET
+    secret: CLIENT_SECRET,
   },
   options: {
-    authorizationMethod: "body"
-  }
+    authorizationMethod: "body",
+  },
 };
