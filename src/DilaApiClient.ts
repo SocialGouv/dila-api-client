@@ -18,7 +18,7 @@ export class DilaApiClient {
 
     try {
       const result = await oauth2.clientCredentials.getToken({
-        scope: "openid"
+        scope: "openid",
       });
       const accessToken = oauth2.accessToken.create(result);
       this.globalToken = accessToken.token.access_token;
@@ -33,7 +33,7 @@ export class DilaApiClient {
   public async fetch({
     path,
     method = "POST",
-    params
+    params,
   }: {
     path: string;
     method?: string;
@@ -49,10 +49,10 @@ export class DilaApiClient {
       body,
       headers: {
         Authorization: `Bearer ${token}`,
-        "content-type": "application/json"
+        "content-type": "application/json",
       },
-      method
-    }).then(r => {
+      method,
+    }).then((r) => {
       if (r.status === 401 && this.globalToken) {
         this.globalToken = undefined;
         return this.fetch({ path, method, params });

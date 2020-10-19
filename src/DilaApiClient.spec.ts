@@ -16,12 +16,12 @@ test("getAccessToken return token for OAuth2 transaction", async () => {
   (OAuth2.create as jest.Mock).mockReturnValue({
     accessToken: {
       create: () => ({
-        token: { access_token: 1234 }
-      })
+        token: { access_token: 1234 },
+      }),
     },
     clientCredentials: {
-      getToken: () => Promise.resolve("fox")
-    }
+      getToken: () => Promise.resolve("fox"),
+    },
   });
   const client = new DilaApiClient();
 
@@ -64,8 +64,8 @@ test("getAccessToken return in memory token", async () => {
 test("getAccessToken forward http error", async () => {
   (OAuth2.create as jest.Mock).mockReturnValue({
     clientCredentials: {
-      getToken: () => Promise.reject(new Error("418 I'm a teapot"))
-    }
+      getToken: () => Promise.reject(new Error("418 I'm a teapot")),
+    },
   });
   const client = new DilaApiClient();
 
@@ -85,9 +85,9 @@ test("fetch send correct API parameters", async () => {
     params: {
       date: 1234,
       sctId: "",
-      textId: "LEGITEXT000006072050"
+      textId: "LEGITEXT000006072050",
     },
-    path: "consult/code/tableMatieres"
+    path: "consult/code/tableMatieres",
   });
   expect(res).toMatchInlineSnapshot(`
             Object {
@@ -107,7 +107,7 @@ test("fetch forward http error", async () => {
   expect(
     client.fetch({
       params: {},
-      path: "whatever"
+      path: "whatever",
     })
   ).rejects.toThrowErrorMatchingInlineSnapshot(`"404"`);
 });
@@ -119,7 +119,7 @@ test("fetch forward api error", async () => {
   expect(
     client.fetch({
       params: {},
-      path: "whatever"
+      path: "whatever",
     })
   ).rejects.toThrowErrorMatchingInlineSnapshot(
     `"Error on API fetch: {\\"error\\":\\"YATTA!\\"}"`
@@ -133,8 +133,8 @@ test("fetch a new token on 401", async () => {
     [
       JSON.stringify({ error: "Unauthorized" }),
       {
-        status: 401
-      }
+        status: 401,
+      },
     ],
     [JSON.stringify({ message: "ok" }), { status: 200 }],
     [JSON.stringify({ message: "ok" }), { status: 200 }]
@@ -147,11 +147,11 @@ test("fetch a new token on 401", async () => {
         const data = { token: { access_token: tokens[tokenIndex % 2] } };
         tokenIndex += 1;
         return data;
-      }
+      },
     },
     clientCredentials: {
-      getToken: () => Promise.resolve("fox")
-    }
+      getToken: () => Promise.resolve("fox"),
+    },
   });
   const client = new DilaApiClient();
 
@@ -161,7 +161,7 @@ test("fetch a new token on 401", async () => {
   // first call (200)
   await client.fetch({
     params: {},
-    path: "whatever"
+    path: "whatever",
   });
   expect(OAuth2.create).toHaveBeenCalledTimes(1);
   expect(client.globalToken).toEqual("1234");
@@ -169,7 +169,7 @@ test("fetch a new token on 401", async () => {
   // second call (200), kept the same token
   await client.fetch({
     params: {},
-    path: "whatever"
+    path: "whatever",
   });
   expect(OAuth2.create).toHaveBeenCalledTimes(1);
   expect(client.globalToken).toEqual("1234");
@@ -177,7 +177,7 @@ test("fetch a new token on 401", async () => {
   // first gets a 401, ask the token then get a 200
   await client.fetch({
     params: {},
-    path: "whatever"
+    path: "whatever",
   });
   expect(OAuth2.create).toHaveBeenCalledTimes(2);
   expect(client.globalToken).toEqual("5678");
@@ -185,7 +185,7 @@ test("fetch a new token on 401", async () => {
   // this is a 200, kep the last token
   await client.fetch({
     params: {},
-    path: "whatever"
+    path: "whatever",
   });
   expect(OAuth2.create).toHaveBeenCalledTimes(2);
   expect(client.globalToken).toEqual("5678");
