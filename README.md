@@ -65,6 +65,7 @@ the output of inner logs.
 
 Releases are automaticly made through our [GitHub Actions][github-url] strictly following the [Semantic Versioning](http://semver.org/) specification thanks to [semantic-release](https://github.com/semantic-release/semantic-release).
 
+
 [codecov-image]: https://codecov.io/gh/SocialGouv/dila-api-client/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/SocialGouv/dila-api-client
 [github-image]: https://github.com/SocialGouv/dila-api-client/workflows/main/badge.svg?branch=master
