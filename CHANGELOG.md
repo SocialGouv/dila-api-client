@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/SocialGouv/dila-api-client/compare/v1.1.5...v1.1.6) (2020-11-04)
+
+
+### Bug Fixes
+
+* **release:** add missing changelog ([7acb326](https://github.com/SocialGouv/dila-api-client/commit/7acb3264646f6dd849a2c1194fd3310ad79e3c62))
+
 # Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
