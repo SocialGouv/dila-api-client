@@ -87,7 +87,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: components
-          path: .
+          path: lib/
 
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v2
