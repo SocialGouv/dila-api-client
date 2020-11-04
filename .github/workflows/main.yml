@@ -61,7 +61,7 @@ jobs:
       - name: Build
         run: yarn build --outDir lib
 
-      - name: Archive lib lib
+      - name: Archive lib
         uses: actions/upload-artifact@v2
         with:
           name: lib
