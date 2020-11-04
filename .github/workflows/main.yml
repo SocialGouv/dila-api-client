@@ -61,10 +61,10 @@ jobs:
       - name: Build
         run: yarn build --outDir lib
 
-      - name: Archive lib components
+      - name: Archive lib lib
         uses: actions/upload-artifact@v2
         with:
-          name: components
+          name: lib
           path: lib/
 
       # - name: Functional tests
@@ -86,7 +86,7 @@ jobs:
       - name: Download lib form build job
         uses: actions/download-artifact@v2
         with:
-          name: components
+          name: lib
           path: lib/
 
       - name: Semantic Release
