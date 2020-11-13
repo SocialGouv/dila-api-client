@@ -23,7 +23,7 @@ These variables are the "oauth identifier" defined in your custom application in
 | Prod    | API_HOST   | https://api.aife.economie.gouv.fr/dila/legifrance-beta/lf-engine-app    |
 | Prod    | TOKEN_HOST | https://oauth.aife.economie.gouv.fr                                     |
 | Sandbox | API_HOST   | https://sandbox-api.aife.economie.gouv.fr/dila/legifrance/lf-engine-app |
-| Sandbo  | TOKEN_HOST | https://sandbox-oauth.aife.economie.gouv.fr                             |
+| Sandbox | TOKEN_HOST | https://sandbox-oauth.aife.economie.gouv.fr                             |
 
 ## Récupérer la table des matières d'un code
 
