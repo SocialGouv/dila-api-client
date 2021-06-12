@@ -1,3 +1,10 @@
+## [1.1.7](https://github.com/SocialGouv/dila-api-client/compare/v1.1.6...v1.1.7) (2021-06-12)
+
+
+### Bug Fixes
+
+* **deps:** update dependency p-all to v4 ([#304](https://github.com/SocialGouv/dila-api-client/issues/304)) ([e69c105](https://github.com/SocialGouv/dila-api-client/commit/e69c10571ea727f6fe7a2c73e6e6fc16f51eb376))
+
 ## [1.1.6](https://github.com/SocialGouv/dila-api-client/compare/v1.1.5...v1.1.6) (2020-11-04)
 
 
