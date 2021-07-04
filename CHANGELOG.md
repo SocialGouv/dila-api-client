@@ -1,3 +1,10 @@
+## [1.1.8](https://github.com/SocialGouv/dila-api-client/compare/v1.1.7...v1.1.8) (2021-07-04)
+
+
+### Bug Fixes
+
+* **deps:** update dependency debug to ^4.3.2 ([#310](https://github.com/SocialGouv/dila-api-client/issues/310)) ([7dfffea](https://github.com/SocialGouv/dila-api-client/commit/7dfffea90819191baa0601fe404dccc45bf79369))
+
 ## [1.1.7](https://github.com/SocialGouv/dila-api-client/compare/v1.1.6...v1.1.7) (2021-06-12)
 
 
