@@ -1,7 +1,7 @@
 import Debug from "debug";
 import fetch from "node-fetch";
-import OAuth2 from "simple-oauth2";
-import { API_HOST, CREDENTIALS, TOKEN_HOST } from "./constants";
+import { ClientCredentials } from "simple-oauth2";
+import { API_HOST, CONFIG, TOKEN_HOST } from "./constants";
 
 const debug = Debug("@socialgouv/dila-api-client");
 
@@ -10,17 +10,16 @@ export class DilaApiClient {
 
   constructor(public apiHost = API_HOST, public tokenHost = TOKEN_HOST) {}
 
-  public async getAccessToken(credentials = CREDENTIALS) {
+  public async getAccessToken(config = CONFIG) {
     if (this.globalToken) {
       return this.globalToken;
     }
-    const oauth2 = OAuth2.create(credentials);
+    const client = new ClientCredentials(config);
 
     try {
-      const result = await oauth2.clientCredentials.getToken({
+      const accessToken = await client.getToken({
         scope: "openid",
       });
-      const accessToken = oauth2.accessToken.create(result);
       this.globalToken = accessToken.token.access_token;
     } catch (error) {
       debug("error", error);
