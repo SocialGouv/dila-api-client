@@ -1,6 +1,6 @@
 import Debug from "debug";
 import fetch from "node-fetch";
-import { ClientCredentials } from "simple-oauth2"; 
+import { ClientCredentials } from "simple-oauth2";
 import { API_HOST, CONFIG, TOKEN_HOST } from "./constants";
 
 const debug = Debug("@socialgouv/dila-api-client");
@@ -14,13 +14,13 @@ export class DilaApiClient {
     if (this.globalToken) {
       return this.globalToken;
     }
-    const client = new ClientCredentials(config); 
+    const client = new ClientCredentials(config);
 
     try {
       const accessToken = await client.getToken({
         scope: "openid",
-      }); 
-      this.globalToken = accessToken.token["access_token"]
+      });
+      this.globalToken = accessToken.token.access_token;
     } catch (error) {
       debug("error", error);
       debug("Access Token error", error.message);
@@ -39,9 +39,9 @@ export class DilaApiClient {
     params: object;
   }): Promise<any> {
     const [routeName] = path.split("/").slice(-1);
-    const body = JSON.stringify(params); 
+    const body = JSON.stringify(params);
     debug(`fetching route ${routeName} with ${body}...`);
-    const token = await this.getAccessToken(); 
+    const token = await this.getAccessToken();
     const url = `${this.apiHost}/${path}`;
 
     const data = await fetch(url, {
