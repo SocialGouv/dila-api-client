@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/SocialGouv/dila-api-client/compare/v1.1.8...v1.2.0) (2021-08-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency simple-oauth2 to v4 ([#174](https://github.com/SocialGouv/dila-api-client/issues/174)) ([aaaebdd](https://github.com/SocialGouv/dila-api-client/commit/aaaebdd7496cc04812018787fc245c34f3dda98d))
+
+
+### Features
+
+* update oauth api changes ([#331](https://github.com/SocialGouv/dila-api-client/issues/331)) ([cd9a218](https://github.com/SocialGouv/dila-api-client/commit/cd9a2186b8afb680404a84d2ccd77cc16173c3cd))
+
 ## [1.1.8](https://github.com/SocialGouv/dila-api-client/compare/v1.1.7...v1.1.8) (2021-07-04)
 
 

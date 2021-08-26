@@ -1,6 +1,6 @@
 {
   "name": "@socialgouv/dila-api-client",
-  "version": "1.1.8",
+  "version": "1.2.0",
   "description": "a client for the DILA API that publishes the french law",
   "homepage": "https://github.com/SocialGouv/dila-api-client",
   "repository": "https://github.com/SocialGouv/dila-api-client.git",
