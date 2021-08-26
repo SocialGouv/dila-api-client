@@ -39,7 +39,6 @@
     "@types/node-fetch": "^2.5.12",
     "@types/simple-oauth2": "^4.1.1",
     "jest": "^27.0.6",
-    "jest-fetch-mock": "^3.0.3",
     "prettier": "^2.3.2",
     "ts-node": "^10.2.0",
     "tslint": "^6.1.3",
