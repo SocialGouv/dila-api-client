@@ -1,9 +1,9 @@
 const fs = require("fs");
 const pAll = require("p-all");
 
-const DilaApi = require("..");
+const { DilaApiClient } = require("../src");
 
-const dilaClient = new DilaApi();
+const dilaClient = new DilaApiClient();
 
 /*
   fetch KALI "conteneur" : a container contains several sections :

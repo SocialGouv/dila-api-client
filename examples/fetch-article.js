@@ -1,15 +1,15 @@
-const DilaApi = require("..");
+const { DilaApiClient } = require("../src");
 
-const dilaClient = new DilaApi();
+const dilaClient = new DilaApiClient();
 
 const getArticle = id =>
-  dilaClient.fetch({
+   dilaClient.fetch({
     path: "consult/getArticle",
     method: "POST",
     params: {
       id
     }
-  });
+  }); 
 
 const JSONLog = data => console.log(JSON.stringify(data, null, 2));
 

@@ -10,7 +10,7 @@ export const API_HOST =
 export const TOKEN_HOST =
   process.env.TOKEN_HOST || "https://oauth.aife.economie.gouv.fr";
 
-export const CREDENTIALS: ModuleOptions = {
+export const CONFIG: ModuleOptions = {
   auth: {
     authorizePath: "/api/oauth/authorize",
     tokenHost: TOKEN_HOST,

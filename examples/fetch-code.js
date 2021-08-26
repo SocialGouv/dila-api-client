@@ -1,6 +1,6 @@
-const DilaApi = require("..");
+const { DilaApiClient } = require("../src");
 
-const dilaClient = new DilaApi();
+const dilaClient = new DilaApiClient();
 
 /*
   fetch a full code from table des matieres and add all individual articles
