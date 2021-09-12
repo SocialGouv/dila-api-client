@@ -24,7 +24,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "debug": "^4.3.2",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.2",
     "p-all": "^4.0.0",
     "simple-oauth2": "^4.2.0"
   },
