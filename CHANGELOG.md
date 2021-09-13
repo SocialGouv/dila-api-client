@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/SocialGouv/dila-api-client/compare/v1.2.0...v1.2.1) (2021-09-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency node-fetch to ^2.6.2 ([#337](https://github.com/SocialGouv/dila-api-client/issues/337)) ([e72476a](https://github.com/SocialGouv/dila-api-client/commit/e72476a26e016a3ca2e83e414a84e91a8c3c3fe0))
+
 # [1.2.0](https://github.com/SocialGouv/dila-api-client/compare/v1.1.8...v1.2.0) (2021-08-26)
 
 
