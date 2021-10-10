@@ -29,7 +29,7 @@
     "simple-oauth2": "^4.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.5",
+    "@babel/core": "^7.15.8",
     "@babel/plugin-transform-modules-commonjs": "^7.15.4",
     "@babel/preset-typescript": "^7.15.0",
     "@socialgouv/tslint-config-recommended": "^0.35.0",
