@@ -21,9 +21,11 @@ export class DilaApiClient {
         scope: "openid",
       });
       this.globalToken = accessToken.token.access_token;
-    } catch (error) {
+    } catch (error: unknown) {
       debug("error", error);
-      debug("Access Token error", error.message);
+      if (error instanceof Error) {
+        debug("Access Token error", error.message);
+      }
       throw error;
     }
     return this.globalToken;
