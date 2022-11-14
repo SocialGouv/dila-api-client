@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/SocialGouv/dila-api-client/compare/v1.2.1...v1.2.2) (2022-11-14)
+
+
+### Bug Fixes
+
+* dummy ([966fb08](https://github.com/SocialGouv/dila-api-client/commit/966fb08ab56888ab059e954dc1a2f18eefb8720f))
+
 ## [1.2.1](https://github.com/SocialGouv/dila-api-client/compare/v1.2.0...v1.2.1) (2021-09-13)
 
 
