@@ -78,3 +78,4 @@ Releases are automaticly made through our [GitHub Actions][github-url] strictly 
 [npm-image]: http://img.shields.io/npm/v/@socialgouv/dila-api-client.svg
 [npm-url]: https://npmjs.org/package/@socialgouv/dila-api-client
 [renovate-image]: https://badges.renovateapi.com/github/SocialGouv/dila-api-client
+
