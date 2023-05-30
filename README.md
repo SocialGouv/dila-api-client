@@ -22,8 +22,8 @@ These variables are the "oauth identifier" defined in your custom application in
 | ------- | ------------------- | ----------------------------------------------------------------------- |
 | *       | OAUTH_CLIENT_ID     | AIFE OAUTH client                                                       |
 | *       | OAUTH_CLIENT_SECRET | AIFE OAUTH secret                                                       |
-| Prod    | API_HOST            | https://api.aife.economie.gouv.fr/dila/legifrance-beta/lf-engine-app    |
-| Prod    | TOKEN_HOST          | https://oauth.aife.economie.gouv.fr                                     |
+| Prod    | API_HOST            | https://api.piste.gouv.fr/dila/legifrance/lf-engine-app                 |
+| Prod    | TOKEN_HOST          | https://oauth.piste.gouv.fr/api/oauth/token                             |
 | Sandbox | API_HOST            | https://sandbox-api.aife.economie.gouv.fr/dila/legifrance/lf-engine-app |
 | Sandbox | TOKEN_HOST          | https://sandbox-oauth.aife.economie.gouv.fr                             |
 
