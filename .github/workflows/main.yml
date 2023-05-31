@@ -3,9 +3,7 @@ on:
   - push
   - pull_request
 
-env:
-  RUNNER_DEBUG: 1
-  
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -73,3 +71,5 @@ jobs:
           GIT_COMMITTER_NAME: ${{ secrets.SOCIALGROOVYBOT_NAME }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.SOCIALGROOVYBOT_NPM_TOKEN }}
+          RUNNER_DEBUG: 1
+  
