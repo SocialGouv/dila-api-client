@@ -3,6 +3,9 @@ on:
   - push
   - pull_request
 
+env:
+  RUNNER_DEBUG: 1
+  
 jobs:
   build:
     runs-on: ubuntu-latest
