@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/SocialGouv/dila-api-client/compare/v1.2.3...v1.2.4) (2023-05-31)
+
+
+### Bug Fixes
+
+* **constants:** mise à jour des endpoints de l'api legifrance (beta -> release) ([#367](https://github.com/SocialGouv/dila-api-client/issues/367)) ([7454dbd](https://github.com/SocialGouv/dila-api-client/commit/7454dbd969490d887e0e80528eb5b7b83752c439))
+
 ## [1.2.3](https://github.com/SocialGouv/dila-api-client/compare/v1.2.2...v1.2.3) (2022-11-14)
 
 
