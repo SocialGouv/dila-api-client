@@ -49,8 +49,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/checkout@v2
-
       - name: Download lib form build job
         uses: actions/download-artifact@v2
         with:
