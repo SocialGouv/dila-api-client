@@ -67,26 +67,26 @@ test("fetch send correct API parameters", async () => {
     path: "consult/code/tableMatieres",
   });
   expect(res).toMatchInlineSnapshot(`
-Object {
-  "message": "YATTA!",
-}
-`);
+    Object {
+      "message": "YATTA!",
+    }
+  `);
   expect(mockFetch).toHaveBeenCalled();
   expect(mockFetch.mock.calls).toMatchInlineSnapshot(`
-Array [
-  Array [
-    "https://api.aife.economie.gouv.fr/dila/legifrance-beta/lf-engine-app/consult/code/tableMatieres",
-    Object {
-      "body": "{\\"date\\":1234,\\"sctId\\":\\"\\",\\"textId\\":\\"LEGITEXT000006072050\\"}",
-      "headers": Object {
-        "Authorization": "Bearer token",
-        "content-type": "application/json",
-      },
-      "method": "POST",
-    },
-  ],
-]
-`);
+    Array [
+      Array [
+        "https://api.piste.gouv.fr/dila/legifrance/lf-engine-app/consult/code/tableMatieres",
+        Object {
+          "body": "{\\"date\\":1234,\\"sctId\\":\\"\\",\\"textId\\":\\"LEGITEXT000006072050\\"}",
+          "headers": Object {
+            "Authorization": "Bearer token",
+            "content-type": "application/json",
+          },
+          "method": "POST",
+        },
+      ],
+    ]
+  `);
 });
 
 test("fetch forward http error", async () => {
