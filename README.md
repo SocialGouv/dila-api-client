@@ -24,10 +24,8 @@ These variables are the "oauth identifier" defined in your custom application in
 | *       | OAUTH_CLIENT_SECRET | AIFE OAUTH secret                                                       |
 | Prod    | API_HOST            | https://api.piste.gouv.fr/dila/legifrance/lf-engine-app                 |
 | Prod    | TOKEN_HOST          | https://oauth.piste.gouv.fr/api/oauth/token                             |
-| Sandbox | API_HOST            | https://sandbox-api.aife.economie.gouv.fr/dila/legifrance/lf-engine-app |
-| Sandbox | TOKEN_HOST          | https://sandbox-oauth.aife.economie.gouv.fr                             |
-
-## Récupérer la table des matières d'un code
+| Sandbox | API_HOST            | https://sandbox-api.piste.gouv.fr/dila/legifrance/lf-engine-app         |
+| Sandbox | TOKEN_HOST          | https://sandbox-oauth.aife.economie.gouv.fr/api/oauth/token             |
 
 ```js
 const DilaApiClient = require("@socialgouv/dila-api-client");
