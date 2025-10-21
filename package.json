@@ -35,7 +35,7 @@
     "@socialgouv/tslint-config-recommended": "^0.35.0",
     "@types/debug": "^4.1.7",
     "@types/jest": "^27.0.3",
-    "@types/node": "^16.11.11",
+    "@types/node": "^22.0.0",
     "@types/node-fetch": "^2.5.12",
     "@types/simple-oauth2": "^4.1.1",
     "jest": "^27.4.3",
